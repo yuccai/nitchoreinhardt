@@ -1,0 +1,18 @@
+span Edit
+div Album
+form(ng-submit='edit(galerie.id)').form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Titre :
+    input.col-md-8.form-control(type='text' ng-model='galerie.title')
+  div.form-group
+    label.col-sm-2.control-label Description :
+    textarea.col-sm-8.form-control(type='text'
+    ng-model='galerie.description')
+  div.form-group
+  input.btn.bnt-warning(type='submit' value='Edit')
+div Photos
+  div(ng-repeat="x in photos")
+    img(src="{{x.url}}")
+    a(ng-click="delete(x.id)") Delete
+
+span kiki

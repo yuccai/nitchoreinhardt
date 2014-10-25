@@ -1,0 +1,23 @@
+div New
+span Photo à afficher
+form(ng-submit='create()').form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Title :
+    input.col-md-8.form-control(type='text' ng-model='galerie.title'
+    placeholder="{{placeholder.title}}")
+  div.form-group
+    label.col-sm-2.control-label Description :
+    textarea.col-sm-8.form-control(type='text'
+    ng-model='galerie.description'
+    placeholder="{{placeholder.description}}")
+  input(type="submit" ng-show="!addPhoto" value="New").btn.btn-danger
+div(ng-show="addPhoto")
+  input(type="file" value="Add photo" nv-file-select="" uploader="uploader"
+  multiple).btn.btn-danger
+  br
+  div(ng-repeat="item in uploader.queue")
+    span {{item.file.name}}
+    button(ng-click="upload(item)") Upload
+    button(ng-click="info(item)") Info
+    br
+  button(ng-click="uploadAll()") Tout uploader

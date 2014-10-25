@@ -1,0 +1,24 @@
+h2 Livre d'or
+ul(ng-repeat="x in livredors")
+  li
+    span {{x.pseudo}}
+    span : 
+    span {{x.comment}}
+    br
+    a(ng-click="delete(x.id)") Delete
+
+form(ng-submit='create()').form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Pseudo :
+    input.col-md-8.form-control(type='text' ng-model='livredor.pseudo'
+    placeholder="{{placeholder.pseudo}}")
+  div.form-group
+    label.col-sm-2.control-label Commentaire :
+    textarea.col-sm-8.form-control(type='text'
+    ng-model='livredor.comment'
+    placeholder="{{placeholder.comment}}")
+  input(type='submit' value='New').btn.btn-danger
+
+pagination.pagination-sm(total-items="totalItems" ng-model="currentPage"
+ng-change="pageChanged()" previous-text="Précédent" items-per-page="5"
+next-text="Suivant")

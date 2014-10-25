@@ -1,0 +1,25 @@
+span Edit
+form(ng-submit='edit(agenda.id)').form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Titre :
+    input.col-md-8.form-control(type='text' ng-model='agenda.title')
+  div.form-group
+    label.col-sm-2.control-label Description :
+    textarea.col-sm-8.form-control(type='text'
+    ng-model='agenda.description')
+  div.form-group
+    label.col-sm-2.control-label Jour :
+    input.col-sm-8.form-control(type='text' ng-model='agenda.day'
+    datepicker-popup="dd-MMMM-yyyy'" is-open="opened" close-text="Fermer" datepicker-options="dateOptions")
+    button.btn.btn-default(type="button" ng-click="open($event)")
+      i.glyphicon.glyphicon-calendar
+  div.form-group
+    label.col-sm-2.control-label Heure :
+    timepicker(ng-model="agenda.hour" ng-change="changed()" hour-step="1"
+    minute-step="5" show-meridian="false")
+  div
+    input#adress(type='text')
+    a.btn.btn-info#search Trouver
+    div#map.center(style='width: 420px; height: 300px; left: 25%;')
+  input.btn.bnt-warning(type='submit' value='Edit')
+

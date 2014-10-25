@@ -1,0 +1,77 @@
+doctype
+html
+  head
+    title= Nitchoreinhardt
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
+    // STYLES
+    link(rel="stylesheet", href="/styles/bootstrap.min.css")
+    link(rel="stylesheet", href="/styles/application.css")
+    link(rel="stylesheet", href="/styles/forms.css")
+    link(rel="stylesheet", href="/styles/importer.css")
+    // STYLES END
+
+
+    // SCRIPTS
+    script(src="/js/dependencies/sails.io.js")
+    script(src="/js/dependencies/angular.min.js")
+    script(src="/js/dependencies/angular-file-upload.min.js")
+    script(src="/js/dependencies/angular-ui-router.min.js")
+    script(src="/js/dependencies/es5-sham.min.js")
+    script(src="/js/dependencies/es5-shim.min.js")
+    script(src="/js/dependencies/jquery.min.js")
+    script(src="/js/dependencies/ngsails.io.js")
+    script(src="/js/ui-bootstrap/ui-bootstrap-tpls.min.js")
+    script(src="/js/angular/app.js")
+    script(src="/js/angular/controller/agendaCtrl.js")
+    script(src="/js/angular/controller/albumsCtrl.js")
+    script(src="/js/angular/controller/galerieCtrl.js")
+    script(src="/js/angular/controller/livredorCtrl.js")
+    script(src="/js/angular/ui-router/routes.js")
+    script(src="/js/scripts/application.js")
+    script(src="/js/scripts/maps.js")
+    // SCRIPTS END
+    //script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0M9AWoVVqI8ixYyWkpscfPygIGp63yvI")
+    script(src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false")
+    script(src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript')
+
+  body(ng-app="nitchoreinhardt")
+    h1#title Nitcho REINHARDT
+    nav.unselectable
+      a(ui-sref="presentation") PRÉSENTATION
+      span |
+      a(ui-sref="agenda") AGENDA
+      span |
+      a(ui-sref="albums") ALBUMS
+      span |
+      a(ui-sref="galerie") GALERIE
+      span |
+      a(ui-sref="contacts") CONTACTS
+      span |
+      a(ui-sref="livredor") LIVRE D'OR
+
+    div.container
+      div(ui-view="").inject.center
+      div.left-arrow
+        img(src='/images/left-arrow.png')
+      div.right-arrow
+        img(src='/images/right-arrow.png')
+
+    footer
+      span.officiel Nitcho REINHARDT site officiel
+      span.sociallink#unselectable
+        a.link(href='https://www.facebook.com/nitchoreinhardt' target='_blank')
+          img(src='/images/social-006_facebook.png')
+        a.link(href='https://www.facebook.com/nitchoreinhardt' target='_blank')
+          img(src='/images/social-005_twitter.png')
+        a.link(href='https://www.facebook.com/nitchoreinhardt' target='_blank')
+          img(src='/images/social-070_myspace.png')
+
+    div#musicplayer.unselectable
+      audio#music(src='/music/InnerAnimal.ogg', type='audio/ogg')
+      span.glyphicon.glyphicon-step-backward
+      span.glyphicon.glyphicon-play
+      span.glyphicon.glyphicon-pause
+      span.glyphicon.glyphicon-step-forward
+
+    script(src="/js/scripts/application.js")
+    script(src="/js/scripts/maps.js")

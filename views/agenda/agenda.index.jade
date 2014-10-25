@@ -1,0 +1,18 @@
+div Index
+  ul(ng-repeat="x in agendas")
+    li
+      div
+        span {{x.title}}
+        br
+        span {{x.description}}
+        br
+        span {{x.day}}
+        br
+        span {{x.hour}}
+        br
+        a(ui-sref="agenda.show({id:x.id})") Show
+        a(ui-sref="agenda.edit({id:x.id})") Edit
+        a(ng-click="delete(x.id)") Delete
+pagination.pagination-sm(total-items="totalItems" ng-model="currentPage"
+ng-change="pageChanged()" previous-text="Précédent" items-per-page="5"
+next-text="Suivant")

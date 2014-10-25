@@ -1,0 +1,13 @@
+span Index
+ul(ng-repeat="x in galeries")
+  li
+    span {{x.title}}
+    span :
+    span {{x.description}}
+    br
+    a(ng-click="delete(x.id)") Delete
+    a(ui-sref="galerie.show({id:x.id})") Show
+    a(ui-sref="galerie.edit({id:x.id})") Edit
+pagination.pagination-sm(total-items="totalItems" ng-model="currentPage"
+ng-change="pageChanged()" previous-text="Précédent" items-per-page="5"
+next-text="Suivant")

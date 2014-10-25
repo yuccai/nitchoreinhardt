@@ -1,0 +1,8 @@
+h3 Show
+
+div Album
+  span {{galerie.title}}
+  span {{galerie.description}}
+div Photos
+  div(ng-repeat="x in photos")
+    img(src="{{x.url}}")
