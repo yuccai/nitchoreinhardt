@@ -15,4 +15,12 @@ div Photos
     img(src="{{x.url}}")
     a(ng-click="delete(x.id)") Delete
 
-span kiki
+  input(type="file" value="Add photo" nv-file-select="" uploader="uploader"
+  multiple).btn.btn-danger
+  br
+  div(ng-repeat="item in uploader.queue")
+    span {{item.file.name}}
+    button(ng-click="upload(item)") Upload
+    button(ng-click="info(item)") Info
+    br
+  button(ng-click="uploadAll()") Tout uploader

@@ -1,0 +1,13 @@
+h3 Log
+button.btn(ng-click="resetForm()") Reset
+form(ng-submit='login()').form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Email :
+    input.col-sm-8.form-control(type='email' ng-model='admin.email'
+    placeholder="{{placeholder.email}}")
+  div.form-group
+    label.col-sm-2.control-label Password :
+    input.col-sm-8.form-control(type='password' ng-model='admin.password'
+    placeholder="{{placeholder.password}}")
+  input(type='submit' value='Connexion').btn.btn-danger
+

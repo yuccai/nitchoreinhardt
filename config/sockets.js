@@ -21,11 +21,13 @@ module.exports.sockets = {
   * automatically.                                                           *
   *                                                                          *
   ***************************************************************************/
+  /*
   onConnect: function(session, socket) {
 
     // By default, do nothing.
 
   },
+  */
 
 
   /***************************************************************************
@@ -34,7 +36,7 @@ module.exports.sockets = {
   * disconnects                                                              *
   *                                                                          *
   ***************************************************************************/
-  onDisconnect: function(session, socket) {
+  afterDisconnect: function(session, socket) {
 
     // By default: do nothing.
   },

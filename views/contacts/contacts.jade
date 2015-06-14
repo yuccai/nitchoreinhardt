@@ -1,1 +1,27 @@
 h2 Contacts
+
+button.btn(ng-click="resetForm()") Reset
+form(ng-submit='sendMail()').form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Nom :
+    input.col-md-8.form-control(type='text' ng-model='mail.name'
+    placeholder="{{placeholder.name}}")
+  div.form-group
+    label.col-sm-2.control-label Prénom :
+    input.col-sm-8.form-control(type='text'
+    ng-model='mail.firstname'
+    placeholder="{{placeholder.firstname}}")
+  div.form-group
+    label.col-sm-2.control-label Email :
+    input.col-sm-8.form-control(type='email' ng-model='mail.from'
+    placeholder="{{placeholder.from}}")
+  div.form-group
+    label.col-sm-2.control-label Objet :
+    input.col-sm-8.form-control(type='text' ng-model='mail.subject'
+    placeholder="{{placeholder.subject}}")
+  div.form-group
+    label.col-sm-2.control-label Message :
+    textarea.col-sm-8.form-control(type='text' ng-model='mail.body'
+    placeholder="{{placeholder.body}}")
+  input(type='submit' value='Envoyer').btn.btn-danger
+

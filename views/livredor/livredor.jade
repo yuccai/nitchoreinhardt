@@ -2,10 +2,10 @@ h2 Livre d'or
 ul(ng-repeat="x in livredors")
   li
     span {{x.pseudo}}
-    span : 
+    span :
     span {{x.comment}}
     br
-    a(ng-click="delete(x.id)") Delete
+    a(ng-show="logged" ng-click="delete(x.id)") Delete
 
 form(ng-submit='create()').form-horizontal
   div.form-group

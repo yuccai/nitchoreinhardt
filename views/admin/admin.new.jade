@@ -1,0 +1,14 @@
+h3 New
+button.btn(ng-click="resetForm()") Reset
+form(ng-submit='create()' name="myForm").form-horizontal
+  div.form-group
+    label.col-sm-2.control-label Email :
+    input.col-sm-8.form-control(type='email' ng-model='admin.email' placeholder="{{placeholder.email}}")
+  div.form-group
+    label.col-sm-2.control-label Password :
+    input.col-sm-8.form-control(type='password' ng-model='admin.password1' placeholder="{{placeholder.password1}}")
+  div.form-group
+    label.col-sm-2.control-label Password confirmation :
+    input.col-sm-8.form-control(type='password' ng-model='admin.password2' placeholder="{{placeholder.password2}}")
+  input(type='submit' ng-disabled=false value='Envoyer').btn.btn-danger
+

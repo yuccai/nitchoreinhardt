@@ -1,5 +1,5 @@
 h2 Galerie
-a(ui-sref=".index") Index
-a(ui-sref=".new") New
+a(ng-show="logged" ui-sref=".index") Index
+a(ng-show="logged" ui-sref=".new") New
 
 div(ui-view="galerie")

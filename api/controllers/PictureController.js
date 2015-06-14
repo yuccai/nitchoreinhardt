@@ -1,7 +1,7 @@
 /**
- * FileController
+ * PictureController
  *
- * @description :: Server-side logic for managing files
+ * @description :: Server-side logic for managing pictures
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
@@ -14,29 +14,29 @@ module.exports = {
 
 
   /**
-   * `FileController.upload()`
+   * `PictureController.upload()`
    */
   upload: function (req, res) {
-    req.file('file').upload({
+    req.picture('picture').upload({
       dirname: path.resolve('assets/uploads/photos')
     },
-    function(err, uploadedFiles){
-      var file,
+    function(err, uploadedPictures){
+      var picture,
       name,
       source,
       url,
       target;
-      for(var i=0;i<uploadedFiles.length;i++){
-        file = uploadedFiles[i];
-        name = file.fd.split('/').pop();
+      for(var i=0;i<uploadedPictures.length;i++){
+        picture = uploadedPictures[i];
+        name = picture.fd.split('/').pop();
         source = path.resolve("assets/uploads/photos/" + name);
         target = path.resolve(".tmp/public/uploads/photos/" + name);
         url = "uploads/photos/" + name;
-        File.create({
+        Picture.create({
           name       : name,
           url        : url,
           id_galerie : req.param('id')
-        }).exec(function(err,file){
+        }).exec(function(err,picture){
           if(err)
             console.log(err);
           else{
@@ -52,7 +52,7 @@ module.exports = {
               if(err)
                 console.log(err);
             });
-            return res.json(file);
+            return res.json(picture);
           }
         });
       }
@@ -61,15 +61,15 @@ module.exports = {
 
 
   /**
-   * `FileController.delete()`
+   * `PictureController.delete()`
    */
   delete: function (req, res) {
-    File.findOne({id: req.param('id')}).exec(function(err,file){
+    Picture.findOne({id: req.param('id')}).exec(function(err,picture){
       if(err)
         console.log(err);
       else{
-        var source = path.resolve("assets/uploads/photos/" + file.name),
-            target = path.resolve(".tmp/public/uploads/photos/" + file.name);
+        var source = path.resolve("assets/uploads/photos/" + picture.name),
+            target = path.resolve(".tmp/public/uploads/photos/" + picture.name);
         fs.remove(source,function(err){
           if(err)
             console.log(err);
@@ -78,12 +78,12 @@ module.exports = {
           if(err)
             console.log(err);
         });
-        File.destroy({id: file.id}).exec(function(err,file){
+        Picture.destroy({id: picture.id}).exec(function(err,picture){
           if(err)
             console.log(err);
           else{
             console.log("Deleted!");
-            return res.json(file);
+            return res.json(picture);
           }
         });
       }

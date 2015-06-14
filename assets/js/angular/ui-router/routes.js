@@ -3,6 +3,10 @@ app.run(
     function ($rootScope,   $state,   $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.logged = false;
+    $rootScope.logout = function(){
+      $rootScope.logged = false;
+    };
     }
   ]);
 app.config(['$stateProvider','$urlRouterProvider',
@@ -105,7 +109,7 @@ app.config(['$stateProvider','$urlRouterProvider',
       }
     })
     .state('galerie.edit', {
-      url: '/galerie/:id',
+      url: '/edit/:id',
       views: {
         'galerie': {
           templateUrl: 'views/galerie/galerie.edit.html',
@@ -117,7 +121,8 @@ app.config(['$stateProvider','$urlRouterProvider',
     url: '/contacts',
     views: {
       '': {
-        templateUrl: 'views/contacts/contacts.html'
+        templateUrl: 'views/contacts/contacts.html',
+        controller: contactsIndex
       }
     }
   })
@@ -130,4 +135,30 @@ app.config(['$stateProvider','$urlRouterProvider',
       }
     }
   })
+  .state('admin', {
+    url: '/admin',
+    views: {
+      '': {
+        templateUrl: 'views/admin/admin.html'
+      }
+    }
+  })
+    .state('admin.login', {
+      url: '/login',
+      views: {
+        'admin': {
+          templateUrl: 'views/admin/admin.login.html',
+          controller: adminLogin
+        }
+      }
+    })
+    .state('admin.new', {
+      url: '/new',
+      views: {
+        'admin': {
+          templateUrl: 'views/admin/admin.new.html',
+          controller: adminNew
+        }
+      }
+    })
 }]);

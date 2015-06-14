@@ -53,6 +53,11 @@ process.chdir(__dirname);
     }
   }
 
+  var io;
+
+  io = require("socket.io").listen(server);
+
+
 
   // Start server
   sails.lift(rc('sails'));

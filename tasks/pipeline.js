@@ -25,13 +25,13 @@ var cssFilesToInject = [
 var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
+
   'js/dependencies/angular.min.js',
   'js/dependencies/angular-sails.js',
   'js/dependencies/angular-ui-router.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
-  'js/ui-bootstrap/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.

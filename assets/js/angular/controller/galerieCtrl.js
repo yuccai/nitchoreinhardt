@@ -39,17 +39,27 @@ var galerieShow = function($scope, $sailsSocket, $stateParams){
   });
 }
 
-var galerieEdit = function($scope, $sailsSocket, $state, $stateParams){
-  $sailsSocket.get("/galerie/show/"+$stateParams.id).success(function(res){
-    $scope.galerie = res.galerie;
-    $scope.photos = res.photos;
-  }).error(function(err){
-    console.log(err);
+var galerieEdit = function($scope, $sailsSocket, $state, $stateParams, PictureUploader){
+  $scope.uploader = new PictureUploader({
+    url: 'picture/upload',
+    method: 'POST'
   });
+  get = function(id){
+    $sailsSocket.get("/galerie/show/"+id).success(function(res){
+      $scope.galerie = res.galerie;
+      $scope.photos = res.photos;
+    }).error(function(err){
+      if(err)
+        console.log(err);
+    });
+  }
+  get($stateParams.id);
 
   $scope.delete = function(id){
-    $sailsSocket.get("/file/delete/"+id).error(function(err){
-      console.log(err);
+    $sailsSocket.get("/picture/delete/"+id).success(function(galerie){
+        get($stateParams.id);
+    }).error(function(err){
+        console.log(err);
     });
   }
 
@@ -59,12 +69,27 @@ var galerieEdit = function($scope, $sailsSocket, $state, $stateParams){
     });
   }
 
+  $scope.uploader.onBeforeUploadItem = function(item){
+    item.formData = [{
+      id: $stateParams.id
+    }];
+  }
+
+  $scope.uploader.onSuccessItem = function(){
+    get($stateParams.id);
+  };
+  $scope.upload = function(item){
+    item.upload();
+  };
+  $scope.uploadAll = function(){
+    $scope.uploader.uploadAll();
+  };
 }
 
-var galerieNew = function($scope, $sailsSocket, $state, FileUploader){
+var galerieNew = function($scope, $sailsSocket, $state, PictureUploader){
   $scope.addPhoto = false;
-  $scope.uploader = new FileUploader({
-    url: 'file/upload',
+  $scope.uploader = new PictureUploader({
+    url: 'picture/upload',
     method: 'POST'
   });
   $scope.galerie = {

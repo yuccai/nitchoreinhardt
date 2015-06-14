@@ -5,6 +5,9 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var fs = require('fs-extra');
+var path = require('path');
+
 module.exports = {
 	
 
@@ -68,12 +71,39 @@ module.exports = {
    * `GalerieController.delete()`
    */
   delete: function (req, res) {
-    Galerie.destroy({id: req.param('id')}).exec(function(err,galerie){
+    File.find({id_galerie: req.param('id')}).exec(function(err,files){
       if(err)
-        console.log(err);
+        console.log(err)
       else{
-        console.log('deleted!');
-        return res.json(galerie);
+        var source, target;
+        for(var i in files){
+          source = path.resolve("assets/uploads/photos/" + files[i].name),
+          target = path.resolve(".tmp/public/uploads/photos/" + files[i].name);
+          fs.remove(source,function(err){
+            if(err)
+              console.log(err);
+          });
+          fs.remove(target,function(err){
+            if(err)
+              console.log(err);
+          });
+          File.destroy({id: files[i].id}).exec(function(err,file){
+            if(err)
+              console.log(err);
+            else{
+              console.log("File : "+file+" deleted!");
+              return res.json(file);
+            }
+          });
+        }
+        Galerie.destroy({id: req.param('id')}).exec(function(err,galerie){
+          if(err)
+            console.log(err);
+          else{
+            console.log('Deleted!');
+            return res.json(galerie);
+          }
+        });
       }
     });
   },
@@ -90,7 +120,7 @@ module.exports = {
       if(err)
         console.log(err);
       else{
-        console.log('updated!');
+        console.log('Updated!');
         return res.json(galerie);
       }
     });
